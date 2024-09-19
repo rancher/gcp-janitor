@@ -1,0 +1,33 @@
+name: 'GCP Janitor'
+author: 'Rancher Sandbox'
+description: 'Mark and clean GCP resources.'
+inputs: 
+  credentials-json:
+    description: 'The JSON key file for GCP service account credentials.'
+    required: true
+  zones:
+    description: 'A comma-separated list of zones to clean resources in. Use `*` for all zones within the selected regions.'
+    required: true
+  project-id:
+    description: 'The GCP project ID where the resources are located.'
+    required: true
+  age-in-hours:
+    description: 'The minimum age (in hours) of resources to be eligible for cleaning.'
+    required: false
+    default: '6'
+  dry-run:
+    description: 'If set to `true`, performs a dry run without deleting any resources.'
+    required: false
+    default: 'false'
+  resource-label-key:
+    description: 'The label key used to identify resources that should not be deleted.'
+    required: true
+  resource-label-value:
+    description: 'The label value associated with `resource-label-key` to mark resources for exclusion from deletion.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/rancher-sandbox/gcp-janitor:v0.1.0'
+branding:
+  icon: 'delete'
+  color: 'red'
