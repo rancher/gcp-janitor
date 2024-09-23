@@ -35,6 +35,6 @@ jobs:
             zones: europe-west2-c
             project-id: my-project
             age-in-hours: 6
-            resource-label-ley: name
+            resource-label-key: name
             resource-label-value: highlander
 ```
