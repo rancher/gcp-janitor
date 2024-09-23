@@ -10,15 +10,15 @@ It follows this strict order to avoid failures caused by inter-resource dependen
 
 ## Inputs
 
-| Name               | Required | Description                                                                                                 |
-| ------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
-| CredentialsJSON    | Y        | The JSON key file for GCP service account credentials.                                                      |
-| Zones              | Y        | A comma-separated list of zones to clean resources in. Use `*` for all zones within the selected regions.   |
-| ProjectID          | Y        | The GCP project ID where the resources are located.                                                         |
-| AgeInHours         | N        | The minimum age (in hours) of resources to be eligible for cleaning. Default to 0.                          |
-| DryRun             | N        | If set to `true`, performs a dry run without deleting any resources. Defaults to `false`.                   |
-| ResourceLabelKey   | Y        | The label key used to identify resources that should not be deleted.                                        |
-| ResourceLabelValue | Y        | The label value associated with `ResourceLabelKey` to mark resources for exclusion from deletion.           |
+| Name                 | Required | Description                                                                                                 |
+| -------------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| credentials-json     | Y        | The JSON key file for GCP service account credentials.                                                      |
+| zones                | Y        | A comma-separated list of zones to clean resources in. Use `*` for all zones within the selected regions.   |
+| project-id           | Y        | The GCP project ID where the resources are located.                                                         |
+| age-in-hours         | N        | The minimum age (in hours) of resources to be eligible for cleaning. Default to 0.                          |
+| dry-run              | N        | If set to `true`, performs a dry run without deleting any resources. Defaults to `false`.                   |
+| resource-label-key   | Y        | The label key used to identify resources that should not be deleted.                                        |
+| resource-label-value | Y        | The label value associated with `ResourceLabelKey` to mark resources for exclusion from deletion.           |
 
 ## Example Usage
 
@@ -31,10 +31,10 @@ jobs:
       - name: Cleanup
         uses: rancher-sandbox/gcp-janitor@v0.1.0
         with:
-            credentialsJSON: ${{secrets.GCP_CREDENTIALS}}
+            credentials-json: ${{secrets.GCP_CREDENTIALS}}
             zones: europe-west2-c
-            projectID: my-project
-            ageInHours: 6
-            resourceLabelKey: name
-            resourceLabelValue: highlander
+            project-id: my-project
+            age-in-hours: 6
+            resource-label-key: name
+            resource-label-value: highlander
 ```
